@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import LandingPage from "./LandingPage";
-import LearningPage from "./LearningPage";
-import CoursePage from "./CoursePage";
+import LandingPage from "./components/LandingPage";
+import LearningPage from "./components/LearningPage";
+import CoursePage from "./components/CoursePage";
 import AlphabetPage from "./AlphabetPage";
-
 
 export default class Routes extends Component {
 
@@ -12,11 +11,10 @@ export default class Routes extends Component {
     return (
       <div>
         <Switch>
-          {/* <Route path="/" component={LandingPage} /> */}
-          {/* <Route exact path="/" component={CoursePage} /> */}
-          <Route exact path="/" component={AlphabetPage} />
-          {/* <Route exact path="/" component={LearningPage} /> */}
-          <Routes/>
+        <Route exact path="/" component={LandingPage} />
+          <Route exact path="/courses" component={CoursePage} />
+        <Route exact path="/learning" component={LearningPage} />
+        <Route exact path="/alphabet-lesson" component={AlphabetPage} />
         </Switch>
       </div>
     );
