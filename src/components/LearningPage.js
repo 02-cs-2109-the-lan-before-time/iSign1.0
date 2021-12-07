@@ -16,6 +16,18 @@ function LearningPage(props) {
 const [letterArr, setLetterArr] = useState([])
   const [ letterIdx, setLetterIdx ] = useState(0);
 
+
+ async function setInitialLetters(){
+
+  // setLetterArr(prevState => [...props.location.letters.letterArr])
+  let propsLetters = props.location.letters.letterArr
+  let newLetterArr = [
+    ...propsLetters
+  ]
+  setLetterArr(newLetterArr)
+  populateLetterKey()
+ }
+
   const images_arr = [
     "https://drive.google.com/uc?export=view&id=1NH1QACDqwUZTYg73Y5tW_a5v2Bq-EyYK",
     "https://drive.google.com/uc?export=view&id=1fAbMh20lCKr2oS7F4vGOvb0LMumS1UTl",
@@ -32,7 +44,7 @@ const [letterArr, setLetterArr] = useState([])
     return images_arr[letterIdx]
   }
   function nextLetter() {
-    if (letterIdx < images_arr.length) {
+    if (letterIdx < letterArr.length) {
       setLetterIdx(letterIdx + 1)
     } else {
       alert("Congratulations! You finished this lesson!")
@@ -46,10 +58,6 @@ const [letterArr, setLetterArr] = useState([])
     }
   })
 
- function setLettersArr(){
-  let arr = props.location.letters.letterArr
-  console.log(arr)
- }
 
  function convertLandMarks(landmark){
 
@@ -78,7 +86,8 @@ async function makePrediction(values){
   }
  
   }
-  function setMapValues(){
+  function populateLetterKey(){
+    console.log(letterArr)
     for(let i = 0; i < letters.length; i++){
       letterKey.set(i,letters[i])
     }
@@ -124,9 +133,9 @@ async function makePrediction(values){
       return model
   }
  function startLesson(){
-  setLettersArr()
+
    getModel()
-   setMapValues()
+   setInitialLetters()
   hands.onResults(onResults)
   toggleLessonStatus(prevState => !prevState);
  
