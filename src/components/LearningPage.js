@@ -12,7 +12,20 @@ function LearningPage(props) {
   const canvasRef = useRef(null)
   const videoRef = useRef(null)
   let [letterArr, setLetterArr] = useState([])
-  let [indexCounter, incrementCounter] = useState(0)
+  const [ letterIdx, setLetterIdx ] = useState(0);
+
+  const images_arr = [
+    "https://drive.google.com/uc?export=view&id=1NH1QACDqwUZTYg73Y5tW_a5v2Bq-EyYK",
+    "https://drive.google.com/uc?export=view&id=1fAbMh20lCKr2oS7F4vGOvb0LMumS1UTl",
+    "https://drive.google.com/uc?export=view&id=1DArGFqFNzgE4TH8UUJAfYyYtpmB455Je",
+    "https://drive.google.com/uc?export=view&id=1Z-5PGdiYloH9lqTB8RjihVEEeorRr4Ee",
+    "https://drive.google.com/uc?export=view&id=1VnRmsymQmK3hzefGh3pD-C4Ha4m5kC8W",
+    "https://drive.google.com/uc?export=view&id=1txS34gCt-zhOpwCp3k63xk-evOz9hlIZ",
+    "https://drive.google.com/uc?export=view&id=1c6DkW1_qjyhLpU5H8TaJI1MCpXscJ0Nd",
+    "https://drive.google.com/uc?export=view&id=1APMO-TSHaIdCJtAqnwlPJH4JdR93TK51",
+    "https://drive.google.com/uc?export=view&id=1MmRYVXe1tKM-hn64TnH-dOPmGnEu0u-d"
+  ];
+
   let model;
   const hands = new mp.Hands({
     locateFile: file => {

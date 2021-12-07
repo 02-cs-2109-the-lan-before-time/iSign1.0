@@ -16,10 +16,14 @@ const AlphabetPage = () => {
           </Link>
          </div>
          <div className="lesson-wrapper">
+         <Link to={{pathname:"/learning", letters:{
+          letterArr:['f','g','h','i','j']
+        }}} >
             <img className="lesson-lock-icon" src="https://drive.google.com/uc?export=view&id=1McUUcvTct9-_NKWli101wYtYM6RjUhlR" />
             <div className="lesson-item locked-item">
               <h3>F to J</h3>
             </div>
+            </Link>
          </div>
          <div className="lesson-wrapper">
             <img className="lesson-lock-icon" src="https://drive.google.com/uc?export=view&id=1McUUcvTct9-_NKWli101wYtYM6RjUhlR" />
