@@ -8,7 +8,8 @@ const AlphabetPage = () => {
        <div className="alphabet-lessons-wrapper">
          <div className="lesson-wrapper">
           <Link to={{pathname:"/learning", letters:{
-            letterArr:['a','b','c','d','e']
+            letterArr:['a','b','c','d','e'],
+            startIndex: 0
           }}} >
             <div className="lesson-item">
               <h3>A to E</h3>
@@ -17,7 +18,8 @@ const AlphabetPage = () => {
          </div>
          <div className="lesson-wrapper">
          <Link to={{pathname:"/learning", letters:{
-          letterArr:['f','g','h','i','j']
+          letterArr:['f','g','h','i','j'],
+          startIndex: 5
         }}} >
             <img className="lesson-lock-icon" src="https://drive.google.com/uc?export=view&id=1McUUcvTct9-_NKWli101wYtYM6RjUhlR" />
             <div className="lesson-item locked-item">

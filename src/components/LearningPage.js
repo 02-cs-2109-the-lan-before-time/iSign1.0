@@ -7,6 +7,7 @@ import * as tf from "@tensorflow/tfjs"
 
 function LearningPage(props) {
   let propsLetters = props.location.letters
+  let startIndex = props.location.letters.startIndex
   let letters= ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
   let letterKey = new Map()
   
@@ -14,8 +15,8 @@ function LearningPage(props) {
   const videoRef = useRef(null)
   const [lettersArray, setLetterArray] = useState(propsLetters.letterArr)
   const [lessonStatus, toggleLessonStatus] = useState(false)
-  const [ letterIdx, setLetterIdx ] = useState(0);
-
+  const [ letterIdx, setLetterIdx ] = useState(startIndex);
+  const [score, incrementScore] = useState(0)
 
   const images_arr = [
     "https://drive.google.com/uc?export=view&id=1NH1QACDqwUZTYg73Y5tW_a5v2Bq-EyYK",
@@ -33,11 +34,12 @@ function LearningPage(props) {
     return images_arr[letterIdx]
   }
   function nextLetter() {
-    if (letterIdx < letterArr.length) {
+    if (score < 5) {
       setLetterIdx(letterIdx + 1)
     } else {
       alert("Congratulations! You finished this lesson!")
     }
+    incrementScore(score +=1)
   }
 
   let model;
