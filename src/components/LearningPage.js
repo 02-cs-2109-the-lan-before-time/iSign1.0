@@ -11,7 +11,9 @@ function LearningPage(props) {
   
   const canvasRef = useRef(null)
   const videoRef = useRef(null)
-  let [letterArr, setLetterArr] = useState([])
+
+  const [lessonStatus, toggleLessonStatus] = useState(false)
+const [letterArr, setLetterArr] = useState([])
   const [ letterIdx, setLetterIdx ] = useState(0);
 
   const images_arr = [
@@ -25,6 +27,17 @@ function LearningPage(props) {
     "https://drive.google.com/uc?export=view&id=1APMO-TSHaIdCJtAqnwlPJH4JdR93TK51",
     "https://drive.google.com/uc?export=view&id=1MmRYVXe1tKM-hn64TnH-dOPmGnEu0u-d"
   ];
+
+  function getImageUrl() {
+    return images_arr[letterIdx]
+  }
+  function nextLetter() {
+    if (letterIdx < images_arr.length) {
+      setLetterIdx(letterIdx + 1)
+    } else {
+      alert("Congratulations! You finished this lesson!")
+    }
+  }
 
   let model;
   const hands = new mp.Hands({
@@ -111,11 +124,11 @@ async function makePrediction(values){
       return model
   }
  function startLesson(){
-  //  console.log("props", props.location.letters)
   setLettersArr()
    getModel()
    setMapValues()
   hands.onResults(onResults)
+  toggleLessonStatus(prevState => !prevState);
  
  }
 
@@ -123,12 +136,21 @@ async function makePrediction(values){
  return (
   <div className="learning-page-container">
     <div className="learning-page-content-wrapper">
-      <h1>Lets get started</h1>
-      <p>Make sure your hand is in the frame and copy the handshape below.</p>
-      <img src="https://drive.google.com/uc?export=view&id=1NH1QACDqwUZTYg73Y5tW_a5v2Bq-EyYK" />
-      <button onClick={() =>startLesson()}id="train_button">Start Training</button> 
-    </div>
+      {lessonStatus ? (
+        <div className="learning-page-content-wrapper">
+        <p>Make sure your hand is in the frame and copy the handshape below.</p>
+      <img src={getImageUrl()} />
+      </div>
+      ):(
+        <div>
+        <h1>Lets get started</h1>
+        <p> Click Start Lesson to Begin </p>
+        <button onClick={() =>startLesson()}id="train_button">Start Lesson</button> 
+        </div>
+      )}
    
+    </div>
+  
     <div className="video-wrapper">
       <Webcam autoPlay  id="web_cam_" ref={videoRef} className="app__videoFeed" />
     </div>
