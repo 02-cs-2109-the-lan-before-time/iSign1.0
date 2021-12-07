@@ -6,27 +6,16 @@ import * as tf from "@tensorflow/tfjs"
 
 
 function LearningPage(props) {
+  let propsLetters = props.location.letters
   let letters= ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
   let letterKey = new Map()
   
   const canvasRef = useRef(null)
   const videoRef = useRef(null)
-
+  const [lettersArray, setLetterArray] = useState(propsLetters.letterArr)
   const [lessonStatus, toggleLessonStatus] = useState(false)
-const [letterArr, setLetterArr] = useState([])
   const [ letterIdx, setLetterIdx ] = useState(0);
 
-
- async function setInitialLetters(){
-
-  // setLetterArr(prevState => [...props.location.letters.letterArr])
-  let propsLetters = props.location.letters.letterArr
-  let newLetterArr = [
-    ...propsLetters
-  ]
-  setLetterArr(newLetterArr)
-  populateLetterKey()
- }
 
   const images_arr = [
     "https://drive.google.com/uc?export=view&id=1NH1QACDqwUZTYg73Y5tW_a5v2Bq-EyYK",
@@ -87,9 +76,9 @@ async function makePrediction(values){
  
   }
   function populateLetterKey(){
-    console.log(letterArr)
-    for(let i = 0; i < letters.length; i++){
-      letterKey.set(i,letters[i])
+ 
+    for(let i = 0; i < lettersArray.length; i++){
+      letterKey.set(i,lettersArray[i])
     }
     console.log(letterKey)
   }
@@ -133,9 +122,8 @@ async function makePrediction(values){
       return model
   }
  function startLesson(){
-
+  populateLetterKey()
    getModel()
-   setInitialLetters()
   hands.onResults(onResults)
   toggleLessonStatus(prevState => !prevState);
  
