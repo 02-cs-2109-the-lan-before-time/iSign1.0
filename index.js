@@ -14,12 +14,12 @@ app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '.', 'public/index.html'))
     // res.sendFile('/Users/laurenmhale/Coding/Fullstack_Academy/capstone_project/iSign1.0/public/index.html')
   })
-  
+
 
   // app.get('/', (req, res, next) => {
   //   res.sendFile(path.join(__dirname, '.', 'src', 'index.html'));
   // });
-  
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
