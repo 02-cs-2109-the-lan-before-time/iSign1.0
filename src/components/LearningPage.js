@@ -26,14 +26,14 @@ function LearningPage(props) {
 
  // increment the letter index until it has reached the length of the array.
   function nextLetter() {
-    
+
     letterIdx++
 
     if (letterIdx >= 26){
       document.querySelector(".course-completed-modal-wrapper").style.display = "block";
       return
     }
-   
+
     if (letterIdx % 5 === 0 && letterIdx > 0 && letterIdx < 25) {
       console.log("NEW LESSON")
       document.querySelector(".completed-modal-wrapper").style.display = "block";
@@ -42,7 +42,7 @@ function LearningPage(props) {
     if (letterIdx <= images_arr.length) {
       getImageUrl()
     }
- 
+
   }
 
   function getImageUrl() {
@@ -72,7 +72,6 @@ async function makePrediction(values){
   let predictionArr = Array.from(p);
   getLetters(predictionArr)
 }
-
 
 function borderColorChange() {
   const webcamDiv = document.getElementById('web_cam_')
