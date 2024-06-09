@@ -25,5 +25,8 @@ module.exports = {
         loader: 'babel-loader'
       }
     ]
+  },
+  optimization: {
+    minimize: false // Disable minification in development environment
   }
 }
